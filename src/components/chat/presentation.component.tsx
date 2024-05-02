@@ -6,6 +6,7 @@ import {messagesAtom} from "@/components/chat/atom";
 import {useAtom} from "jotai/index";
 import {Message} from "@/components/chat/message";
 import {sendMsgToOpenAI} from "@/services/openai";
+import {useEffect, useRef} from "react";
 
 interface PromptLink {
     question: string,
@@ -52,7 +53,7 @@ export function Presentation() {
     const shouldDisplaySplashScreen = messages.length == 0;
 
     return (
-        <div className="max-w-3xl p-2 w-full block relative h-calc top-12">
+        <div className="max-w-3xl p-2 w-full block relative h-calc top-12 overflow-y-scroll">
             {shouldDisplaySplashScreen &&
                 <div
                     className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">

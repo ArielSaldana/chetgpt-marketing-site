@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useAtom} from 'jotai';
 import {messagesAtom} from "./atom"
 import {Message} from "@/components/chat/message";
@@ -44,7 +44,6 @@ export default function TextInput() {
     }
 
     function handleFocus() {
-        console.log("yes")
         setIsActive(true);
     }
 
