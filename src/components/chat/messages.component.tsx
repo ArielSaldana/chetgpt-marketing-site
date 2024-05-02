@@ -26,19 +26,23 @@ export default function Messages() {
         <div className="h-[calc(100%-204px)] p-2 w-full block relative top-12">
             <ol className="mt-10">
                 {messages.map((message, index) => (
-                    <li className="w-full" key={index}>
-                        <div className="relative flex items-center mb-10">
-                            <div className="flex-shrink-0">
+                    <li key={index} className="w-full mb-10">
+                        <div className="flex items-start">
+                            {/* Profile Picture Container */}
+                            <div className="flex-none" style={{ width: 60, height: 60 }}>
                                 <Image
                                     src={message.fromChet ? "/chetgptpfp.png" : "/userpfp.png"}
                                     alt={"profile photo"}
                                     width={60}
                                     height={60}
+                                    className="block"
                                 />
                             </div>
-                            <div className="relative mt-3">
-                                {message.fromChet && <div><strong>ChetGPT</strong></div>}
-                                {!message.fromChet && <div><strong>You</strong></div>}
+                            {/* Message Content Container */}
+                            <div className="flex-grow ml-3">
+                                <div>
+                                    <strong>{message.fromChet ? "ChetGPT" : "You"}</strong>
+                                </div>
                                 <div>
                                     <MarkdownComponent markdownString={message.message} />
                                 </div>
@@ -48,5 +52,6 @@ export default function Messages() {
                 ))}
             </ol>
         </div>
-    )
+    );
 }
+
