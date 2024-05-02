@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@next/mdx": "^14.2.3",
     "@svgr/webpack": "^8.1.0",
+    "@types/mdx": "^2.0.13",
     "jotai": "^2.8.0",
     "next": "14.2.3",
     "next-svg": "^1.0.7",
     "openai": "^4.40.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

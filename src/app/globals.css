@@ -35,3 +35,7 @@ body {
 * {
   box-sizing: border-box;
 }
+
+a {
+  color: #8bff51;
+}

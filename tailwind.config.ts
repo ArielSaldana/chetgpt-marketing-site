@@ -21,6 +21,7 @@ const config: Config = {
       width: {
         '48px': '48px',
         "inherit" : "inherit",
+        '45pr': '45%',
       },
     },
   },

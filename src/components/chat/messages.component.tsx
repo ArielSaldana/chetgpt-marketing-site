@@ -2,6 +2,23 @@ import './message'
 import {useAtom} from "jotai/index";
 import {messagesAtom} from "@/components/chat/atom";
 import Image from "next/image";
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkHtml from 'remark-html';
+
+export function markdownToHtml(markdown: string) {
+    const result = unified()
+        .use(remarkParse)
+        .use(remarkHtml)
+        .processSync(markdown);
+
+    return result.toString();
+}
+
+function MarkdownComponent({ markdownString }: any) {
+    const html = markdownToHtml(markdownString);
+    return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
 
 export default function Messages() {
     const [messages] = useAtom(messagesAtom);
@@ -22,7 +39,9 @@ export default function Messages() {
                             <div className="relative mt-3">
                                 {message.fromChet && <div><strong>ChetGPT</strong></div>}
                                 {!message.fromChet && <div><strong>You</strong></div>}
-                                <div>{message.message}</div>
+                                <div>
+                                    <MarkdownComponent markdownString={message.message} />
+                                </div>
                             </div>
                         </div>
                     </li>
