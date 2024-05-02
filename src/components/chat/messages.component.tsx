@@ -51,11 +51,11 @@ export default function Messages() {
                                 />
                             </div>
                             {/* Message Content Container */}
-                            <div className="flex-grow ml-3">
+                            <div className="flex-grow ml-3 mt-2">
                                 <div>
-                                    <strong>{message.fromChet ? "ChetGPT" : "You"}</strong>
+                                    <strong className="text-neutral-400 text-sm">{message.fromChet ? "ChetGPT" : "You"}</strong>
                                 </div>
-                                <div>
+                                <div className="ml-auto mr-auto text-neutral-400 font-weight-light">
                                     <MarkdownComponent markdownString={message.message}/>
                                 </div>
                             </div>
