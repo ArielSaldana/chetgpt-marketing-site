@@ -31,3 +31,8 @@ body {
 a {
   color: #8bff51;
 }
+
+
+.messages-scrollbar::-webkit-scrollbar {
+  display: none;
+}
