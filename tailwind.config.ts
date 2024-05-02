@@ -26,7 +26,8 @@ const config: Config = {
       background: {
       },
       colors: {
-        'chetgpt-dark-bg' : "rgb(21,21,21)"
+        'chetgpt-dark-bg' : "rgb(21,21,21)",
+        'chetgpt-green': '#06a17b'
       },
     },
   },
