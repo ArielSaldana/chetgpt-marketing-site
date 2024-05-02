@@ -7,6 +7,7 @@ import UpIcon from '@/assets/icons/up-arrow.svg'; // Make sure this import works
 export default function TextInput() {
     const [messages, setMessages] = useAtom(messagesAtom);
     const [text, setText] = useState('');
+    const [isActive, setIsActive] = useState(false);
 
     function addMessage() {
         if (text.trim()) {
@@ -17,11 +18,21 @@ export default function TextInput() {
     }
 
     function handleKeyDown(e: { key: string; shiftKey: any; preventDefault: () => void; }) {
+        // If Shift + Enter is pressed, allow the default behavior to add a new line
+        // Prevents the default action of inserting a newline
         if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault(); // Prevents the default action of inserting a newline
+            e.preventDefault();
             addMessage();
         }
-        // If Shift + Enter is pressed, allow the default behavior to add a new line
+    }
+
+    function handleFocus() {
+        console.log("yes")
+        setIsActive(true);
+    }
+
+    function handleBlur() {
+        setIsActive(false);
     }
 
     // Check if the text is not empty and not just the placeholder
@@ -29,10 +40,12 @@ export default function TextInput() {
 
     return (
         <div className="fixed bottom-0 max-w-3xl w-inherit flex flex-col">
-            <div className="bottom-0 max-w-3xl w-full flex flex-row justify-center items-center rounded-md shadow-sm border border-solid border-neutral-600">
+            <div className={`${isActive ? 'focus:border-neutral-300' : 'border-neutral-700'} "bottom-0 max-w-3xl w-full flex flex-row justify-center items-center rounded-md shadow-sm border border-solid focus:border-neutral-300`}>
                 <textarea
                     className="bg-transparent p-0 pl-10 pr-10 pt-2 pb-2 resize-none focus:outline-none focus:ring-0 w-full h-11 placeholder-neutral-600"
                     value={text}
+                    onFocus={(e) => handleFocus()}
+                    onBlur={(e) => handleBlur()}
                     onChange={(e) => setText(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Message ChetGPT"
