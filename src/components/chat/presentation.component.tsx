@@ -17,7 +17,7 @@ const links: PromptLink[] = [
     { question: "Dexscreener Link", detail: "Gets the dexscreener link", prompt: "Can I get the dexscreener link?"},
     { question: "Twitter Link", detail: "Gets the Twitter link", prompt: "Can I get the Twitter link?"},
     { question: "Telegram Link", detail: "Gets the Telegram link", prompt: "Can I get the Telegram link?"},
-    { question: "What meme coin should I invest in?", detail: "Suggests a meme coin", prompt: "Can I get the dexscreener link?"},
+    { question: "What meme coin should I invest in?", detail: "Suggests a meme coin", prompt: "What meme coins should I invest in?"},
 ]
 
 
