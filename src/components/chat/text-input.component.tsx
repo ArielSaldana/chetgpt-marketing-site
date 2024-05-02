@@ -2,19 +2,36 @@ import React, {useState} from 'react';
 import {useAtom} from 'jotai';
 import {messagesAtom} from "./atom"
 import {Message} from "@/components/chat/message";
-import UpIcon from '@/assets/icons/up-arrow.svg'; // Make sure this import works, if using SVGR
+import UpIcon from '@/assets/icons/up-arrow.svg';
+import {sendMsgToOpenAI} from "@/services/openai";
 
 export default function TextInput() {
     const [messages, setMessages] = useAtom(messagesAtom);
     const [text, setText] = useState('');
     const [isActive, setIsActive] = useState(false);
 
-    function addMessage() {
+    async function addMessage() {
         if (text.trim()) {
-            const newMessage: Message = {fromChet: true, message: text}; // Assuming 'fromChet' was a typo
-            setMessages([...messages, newMessage]);
-            setText('');  // Clear the textarea after sending the message
+            const newMessage: Message = {fromChet: false, message: text}; // Assuming 'fromChet' was a typo
+            // setMessages([...messages, newMessage]);
+            addMsg(newMessage)
+            setText('');
+
+            try {
+                const response = await sendMsgToOpenAI(text);
+                if (response != null) {
+                    const chetGPTMsg: Message = {fromChet: true, message: response.toString()};
+                    addMsg(chetGPTMsg)
+                }
+                console.log("Response from OpenAI:", response);
+            } catch (error) {
+                console.error("Error communicating with OpenAI:", error);
+            }
         }
+    }
+
+    function addMsg(msg: Message): void {
+        setMessages(prevMessages => [...prevMessages, msg]);
     }
 
     function handleKeyDown(e: { key: string; shiftKey: any; preventDefault: () => void; }) {
