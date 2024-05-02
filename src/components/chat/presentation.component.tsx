@@ -79,7 +79,7 @@ export function Presentation() {
                             <div onClick={() => {
                                 handlePromptLink(link.prompt)
                             }} key={index}
-                                 className={`${index > 1 ? 'hidden' : ''} w-full md:block md:w-45pr px-5 py-2 border border-solid border-neutral-700 mx-2 my-1 rounded-lg`}>
+                                 className={`${index > 1 ? 'hidden' : ''} w-full md:block md:w-45pr px-5 py-2 border border-solid border-neutral-700 mx-2 my-1 rounded-lg transition ease-in-out delay-50 hover:border-green-300`}>
                                 <h3 className="text-neutral-400 text-md">{link.question}</h3>
                                 <p className="text-neutral-400 text-sm">{link.detail}</p>
                             </div>
