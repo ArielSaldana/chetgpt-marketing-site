@@ -23,6 +23,11 @@ const config: Config = {
         "inherit" : "inherit",
         '45pr': '45%',
       },
+      background: {
+      },
+      colors: {
+        'chetgpt-dark-bg' : "#rgb(21,21,21)"
+      },
     },
   },
   plugins: [],

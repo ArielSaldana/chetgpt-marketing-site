@@ -56,7 +56,7 @@ export default function TextInput() {
     const isTextNotEmpty = text.trim().length > 0;
 
     return (
-        <div className="fixed bottom-0 max-w-3xl w-inherit flex flex-col bg-black">
+        <div className="fixed bottom-0 max-w-3xl w-inherit flex flex-col bg-chetgpt-dark-bg">
             <div className={`${isActive ? 'focus:border-neutral-300' : 'border-neutral-700'} "bottom-0 max-w-3xl w-full flex flex-row justify-center items-center rounded-md shadow-sm border border-solid focus:border-neutral-300`}>
                 <textarea
                     className="bg-transparent p-0 pl-10 pr-10 pt-2 pb-2 resize-none focus:outline-none focus:ring-0 w-full h-11 placeholder-neutral-600"
@@ -74,7 +74,7 @@ export default function TextInput() {
                 </button>
             </div>
             <div className="mt-5 mb-4">
-                <p>ChetGPT(TM)</p>
+                <p className="text-xs text-neutral-700">Not affiliated with ChatGPT or OpenAI. Not financial advice, do your own research.</p>
             </div>
         </div>
     );
