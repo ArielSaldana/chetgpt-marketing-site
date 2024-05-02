@@ -11,7 +11,7 @@ export function Presentation() {
     const shouldDisplaySplashScreen = messages.length == 0;
 
     return (
-        <div className="max-w-3xl m-auto p-2 w-full block relative h-calc top-12">
+        <div className="max-w-3xl p-2 w-full block relative h-calc top-12">
 
             {shouldDisplaySplashScreen &&
                 <div
@@ -35,7 +35,7 @@ export function Presentation() {
                 </div>
             }
 
-            <div className="w-full" style={{width: 'calc(100% - 1rem)'}}>
+            <div className="w-full" style={{paddingBottom: '150px'}}>
                 <Messages/>
             </div>
             <div className="w-full" style={{width: 'calc(100% - 1rem)'}}>

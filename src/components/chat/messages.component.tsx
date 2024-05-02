@@ -6,12 +6,12 @@ import Image from "next/image";
 export default function Messages() {
     const [messages] = useAtom(messagesAtom);
     return (
-        <div>
-            <ol>
+        <div className="h-[calc(100%-204px)] p-2 w-full block relative top-12">
+            <ol className="mt-10">
                 {messages.map((message, index) => (
-                    <li key={index}>
+                    <li className="w-full" key={index}>
                         <div className="relative flex items-center mb-10">
-                            <div>
+                            <div className="flex-shrink-0">
                                 <Image
                                     src={message.fromChet ? "/chetgptpfp.png" : "/userpfp.png"}
                                     alt={"profile photo"}
