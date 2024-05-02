@@ -14,10 +14,14 @@ interface PromptLink {
 }
 
 const links: PromptLink[] = [
-    { question: "Dexscreener Link", detail: "Gets the dexscreener link", prompt: "Can I get the dexscreener link?"},
-    { question: "Twitter Link", detail: "Gets the Twitter link", prompt: "Can I get the Twitter link?"},
-    { question: "Telegram Link", detail: "Gets the Telegram link", prompt: "Can I get the Telegram link?"},
-    { question: "What meme coin should I invest in?", detail: "Suggests a meme coin", prompt: "What meme coins should I invest in?"},
+    {question: "Dexscreener Link", detail: "Gets the dexscreener link", prompt: "Can I get the dexscreener link?"},
+    {question: "Twitter Link", detail: "Gets the Twitter link", prompt: "Can I get the Twitter link?"},
+    {question: "Telegram Link", detail: "Gets the Telegram link", prompt: "Can I get the Telegram link?"},
+    {
+        question: "What meme coin should I invest in?",
+        detail: "Suggests a meme coin",
+        prompt: "What meme coins should I invest in?"
+    },
 ]
 
 
@@ -71,7 +75,9 @@ export function Presentation() {
 
                     <div className="flex flex-row flex-wrap items-center justify-center w-full cursor-pointer">
                         {links.map((link, index) => (
-                            <div onClick={()=>{handlePromptLink(link.prompt)}} key={index}
+                            <div onClick={() => {
+                                handlePromptLink(link.prompt)
+                            }} key={index}
                                  className={`${index > 1 ? 'hidden' : ''} w-full md:block md:w-45pr px-5 py-2 border border-solid border-neutral-700 mx-2 my-1 rounded-lg`}>
                                 <h3 className="text-neutral-400 text-md">{link.question}</h3>
                                 <p className="text-neutral-400 text-sm">{link.detail}</p>
