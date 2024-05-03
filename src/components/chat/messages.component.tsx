@@ -2,7 +2,7 @@ import './message'
 import {useAtom} from "jotai/index";
 import {messagesAtom} from "@/components/chat/atom";
 import Image from "next/image";
-import { unified } from 'unified';
+import {unified} from 'unified';
 import remarkParse from 'remark-parse';
 import remarkHtml from 'remark-html';
 import {useEffect, useRef} from "react";
@@ -16,9 +16,9 @@ export function markdownToHtml(markdown: string) {
     return result.toString();
 }
 
-function MarkdownComponent({ markdownString }: any) {
+function MarkdownComponent({markdownString}: any) {
     const html = markdownToHtml(markdownString);
-    return <div dangerouslySetInnerHTML={{ __html: html }} />;
+    return <div dangerouslySetInnerHTML={{__html: html}}/>;
 }
 
 export default function Messages() {
@@ -29,7 +29,7 @@ export default function Messages() {
         if (messagesEndRef.current) {
             const element = messagesEndRef.current;
             // @ts-ignore
-            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+            messagesEndRef.current.scrollIntoView({behavior: 'smooth'});
         }
     }, [messages]);
 
@@ -52,7 +52,8 @@ export default function Messages() {
                             {/* Message Content Container */}
                             <div className="flex-grow ml-3 mt-2">
                                 <div>
-                                    <strong className="text-neutral-400 text-sm">{message.fromChet ? "ChetGPT" : "You"}</strong>
+                                    <strong
+                                        className="text-neutral-400 text-sm">{message.fromChet ? "ChetGPT" : "You"}</strong>
                                 </div>
                                 <div className="ml-auto mr-auto text-neutral-400 font-weight-light">
                                     <MarkdownComponent markdownString={message.message}/>
