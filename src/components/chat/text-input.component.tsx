@@ -10,6 +10,22 @@ export default function TextInput() {
     const [text, setText] = useState('');
     const [isActive, setIsActive] = useState(false);
 
+    //resize input bar function
+    const resizeTextArea = (textArea: HTMLTextAreaElement | null, value: string) => {
+       useEffect(() => {
+        if (textArea) {
+            textArea.style.height = '0px'
+            const { scrollHeight } = textArea
+
+            textArea.style.height = `${scrollHeight}px`
+        }
+        }, [textArea, value]) 
+    }
+
+    const textAreaRef = useRef<HTMLTextAreaElement>(null)
+    resizeTextArea(textAreaRef.current, text)
+
+
     async function addMessage() {
         if (text.trim()) {
             const newMessage: Message = {fromChet: false, message: text}; // Assuming 'fromChet' was a typo
@@ -58,7 +74,8 @@ export default function TextInput() {
         <div className="fixed bottom-0 max-w-3xl w-inherit flex flex-col bg-chetgpt-dark-bg">
             <div className={`${isActive ? 'focus:border-neutral-300' : 'border-neutral-700'} "bottom-0 max-w-3xl w-full flex flex-row justify-center items-center rounded-md shadow-sm border border-solid focus:border-neutral-300`}>
                 <textarea
-                    className="bg-transparent p-0 pl-10 pr-10 pt-2 pb-2 resize-none focus:outline-none focus:ring-0 w-full h-11 placeholder-neutral-600 "
+                    className="bg-transparent p-0 pl-10 pr-10 pt-2 pb-2 resize-none focus:outline-none focus:ring-0 w-full h-11 placeholder-neutral-600 max-h-20 overflow-hidden"
+                    ref={textAreaRef}
                     value={text}
                     onFocus={(e) => handleFocus()}
                     onBlur={(e) => handleBlur()}
@@ -67,7 +84,7 @@ export default function TextInput() {
                     placeholder="Message ChetGPT"
                 />
                 <button
-                    className={`${isTextNotEmpty ? 'bg-neutral-200' : 'bg-neutral-800'} w-8 h-8 rounded-lg flex justify-center items-center absolute right-2`}
+                    className={`${isTextNotEmpty ? 'bg-neutral-200' : 'bg-neutral-800'} w-8 h-8 rounded-lg flex justify-center items-center place-self-end absolute right-2 mb-1`}
                     onClick={addMessage}>
                     <UpIcon className="text-neutral-950 w-6 h-6"/>
                 </button>
