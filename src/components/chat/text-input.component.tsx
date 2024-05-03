@@ -90,7 +90,7 @@ export default function TextInput() {
                 </button>
             </div>
             <div className="mt-5 mb-4">
-                <p className="text-xs text-neutral-700" >Not affiliated with ChatGPT or OpenAI. Not financial advice, do your own research.</p>
+                <p className="text-xs text-neutral-700 text-center" >Not affiliated with ChatGPT or OpenAI. Not financial advice, do your own research.</p>
             </div>
         </div>
     );
