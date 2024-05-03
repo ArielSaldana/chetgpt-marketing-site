@@ -9,22 +9,16 @@ export default function TextInput() {
     const [messages, setMessages] = useAtom(messagesAtom);
     const [text, setText] = useState('');
     const [isActive, setIsActive] = useState(false);
-
-    //resize input bar function
-    const resizeTextArea = (textArea: HTMLTextAreaElement | null, value: string) => {
-       useEffect(() => {
-        if (textArea) {
-            textArea.style.height = '0px'
-            const { scrollHeight } = textArea
-
-            textArea.style.height = `${scrollHeight}px`
-        }
-        }, [textArea, value]) 
-    }
-
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
-    resizeTextArea(textAreaRef.current, text)
 
+    useEffect(() => {
+        if (textAreaRef.current !== null) {
+            textAreaRef.current.style.height = '0px';
+            const { scrollHeight } = textAreaRef.current;
+            console.log(scrollHeight)
+            textAreaRef.current.style.height = `${scrollHeight}px`;
+        }
+    }, [text]);
 
     async function addMessage() {
         if (text.trim()) {

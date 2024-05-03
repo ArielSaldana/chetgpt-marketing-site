@@ -33,7 +33,6 @@ export default function Messages() {
         }
     }, [messages]);
 
-
     return (
         <div className="h-[calc(100%-204px)] p-2 w-full block relative top-12">
             <ol className="mt-10">

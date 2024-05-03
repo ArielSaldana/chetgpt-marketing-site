@@ -6,7 +6,6 @@ import {messagesAtom} from "@/components/chat/atom";
 import {useAtom} from "jotai/index";
 import {Message} from "@/components/chat/message";
 import {sendMsgToOpenAI} from "@/services/openai";
-import {useEffect, useRef} from "react";
 
 interface PromptLink {
     question: string,
