@@ -29,7 +29,6 @@ export function Presentation() {
     const [messages, setMessage] = useAtom(messagesAtom);
 
     async function handlePromptLink(message: string): Promise<void> {
-        console.log(message)
         const newMessage: Message = {fromChet: false, message: message};
         addMsg(newMessage)
 
