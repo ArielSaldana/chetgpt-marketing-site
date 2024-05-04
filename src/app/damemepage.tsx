@@ -1,3 +1,4 @@
+import {sendPromptToOpenAI} from "@/services/openai";
 
 export default function Dameme() {
     return (
