@@ -25,3 +25,13 @@ export async function sendMsgToOpenAI(message: string) {
     return res.choices[0].message.content;
 }
 
+export async function sendPromptToOpenAI(message: string) {
+const response = await openai.images.generate({
+    model: "dall-e-2",
+    prompt: "robot standing with city in the background, doomer style, wojak-meme art style",
+    n: 1,
+    size: "1024x1024",
+  });
+  return response.data[0].url;
+}
+
