@@ -73,6 +73,10 @@ export function Presentation() {
                         priority
                     />
 
+                    <Link href="/dameme">
+                     <button className="px-5 py-2 padding-3 mb-3 justify-center text-neutral-300 underline border border-solid border-neutral-600 rounded-lg hover:border-neutral-100" >Try DAMEM-E ↗</button> 
+                    </Link>
+
                     <div className="flex flex-row flex-wrap items-center justify-center w-full cursor-pointer">
                         {links.map((link, index) => (
                             <div onClick={() => {
