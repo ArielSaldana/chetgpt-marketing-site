@@ -3,19 +3,18 @@ import {useAtom} from 'jotai';
 import {messagesAtom} from "./atom"
 import {Message} from "@/components/chat/message";
 import UpIcon from '@/assets/icons/up-arrow.svg';
-import {sendMsgToOpenAI} from "@/services/openai";
+import {sendContextAwareMessage} from "@/services/openai";
 
 export default function TextInput() {
     const [messages, setMessages] = useAtom(messagesAtom);
     const [text, setText] = useState('');
     const [isActive, setIsActive] = useState(false);
-    const textAreaRef = useRef<HTMLTextAreaElement>(null)
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
         if (textAreaRef.current !== null) {
             textAreaRef.current.style.height = '0px';
-            const { scrollHeight } = textAreaRef.current;
-            console.log(scrollHeight)
+            const {scrollHeight} = textAreaRef.current;
             textAreaRef.current.style.height = `${scrollHeight}px`;
         }
     }, [text]);
@@ -28,12 +27,12 @@ export default function TextInput() {
             setText('');
 
             try {
-                const response = await sendMsgToOpenAI(text);
+                const response = await sendContextAwareMessage(messages);
+
                 if (response != null) {
                     const chetGPTMsg: Message = {fromChet: true, message: response.toString()};
                     addMsg(chetGPTMsg)
                 }
-                console.log("Response from OpenAI:", response);
             } catch (error) {
                 console.error("Error communicating with OpenAI:", error);
             }
@@ -66,7 +65,8 @@ export default function TextInput() {
 
     return (
         <div className="fixed bottom-0 max-w-3xl w-inherit flex flex-col bg-chetgpt-dark-bg">
-            <div className={`${isActive ? 'focus:border-neutral-300' : 'border-neutral-700'} "bottom-0 max-w-3xl w-full flex flex-row justify-center items-center rounded-md shadow-sm border border-solid focus:border-neutral-300`}>
+            <div
+                className={`${isActive ? 'focus:border-neutral-300' : 'border-neutral-700'} "bottom-0 max-w-3xl w-full flex flex-row justify-center items-center rounded-md shadow-sm border border-solid focus:border-neutral-300`}>
                 <textarea
                     className="bg-transparent p-0 pl-10 pr-10 pt-2 pb-2 resize-none focus:outline-none focus:ring-0 w-full h-11 placeholder-neutral-600 max-h-20 overflow-hidden"
                     ref={textAreaRef}
@@ -84,7 +84,8 @@ export default function TextInput() {
                 </button>
             </div>
             <div className="mt-5 mb-4">
-                <p className="text-xs text-neutral-700 text-center" >Not affiliated with ChatGPT or OpenAI. Not financial advice, do your own research.</p>
+                <p className="text-xs text-neutral-700 text-center">Not affiliated with ChatGPT or OpenAI. Not financial
+                    advice, do your own research.</p>
             </div>
         </div>
     );
